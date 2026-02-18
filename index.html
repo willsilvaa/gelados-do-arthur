@@ -354,7 +354,7 @@
                         <h4 class="font-display font-black text-xl">Morango 500 ML</h4>
                         <span class="font-display font-black text-primary">R$ 15,00</span>
                     </div>
-                    <button onclick="openModal('Morango 500 ML', 'images/1.png'); closeMenuModal();"
+                    <button onclick="openModal('Morango 500 ML', 'images/1.png')"
                         class="bg-text-main text-white px-4 py-2 rounded-xl font-display font-black hover:bg-primary transition-all">PEDIR</button>
                 </div>
 
@@ -365,7 +365,7 @@
                         <h4 class="font-display font-black text-xl">Maracujá 300 ML</h4>
                         <span class="font-display font-black text-primary">R$ 12,00</span>
                     </div>
-                    <button onclick="openModal('Maracuja 300 ML', 'images/2.png'); closeMenuModal();"
+                    <button onclick="openModal('Maracuja 300 ML', 'images/2.png')"
                         class="bg-text-main text-white px-4 py-2 rounded-xl font-display font-black hover:bg-primary transition-all">PEDIR</button>
                 </div>
 
@@ -376,7 +376,7 @@
                         <h4 class="font-display font-black text-xl">Açai 200 ML</h4>
                         <span class="font-display font-black text-primary">R$ 10,00</span>
                     </div>
-                    <button onclick="openModal('Açai 200 ML', 'images/5.png'); closeMenuModal();"
+                    <button onclick="openModal('Açai 200 ML', 'images/5.png')"
                         class="bg-text-main text-white px-4 py-2 rounded-xl font-display font-black hover:bg-primary transition-all">PEDIR</button>
                 </div>
             </div>
@@ -492,7 +492,12 @@
             const menuModal = document.getElementById('menu-modal');
             menuModal.classList.remove('flex');
             menuModal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
+
+            // Só libera o scroll se o modal de redes sociais também estiver fechado
+            const socialModal = document.getElementById('social-modal');
+            if (socialModal.classList.contains('hidden')) {
+                document.body.style.overflow = 'auto';
+            }
         }
 
         function getSelectedCreme() {
@@ -529,7 +534,12 @@
             const modal = document.getElementById('social-modal');
             modal.classList.remove('flex');
             modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
+
+            // Só libera o scroll se o modal do cardápio também estiver fechado
+            const menuModal = document.getElementById('menu-modal');
+            if (menuModal.classList.contains('hidden')) {
+                document.body.style.overflow = 'auto';
+            }
         }
 
         document.addEventListener('keydown', (e) => {
