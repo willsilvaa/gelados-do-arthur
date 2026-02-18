@@ -545,11 +545,9 @@
 
             const text = `*NOVO PEDIDO - Gelados do Arthur* \uD83C\uDF66\n\nOlá Arthur! Gostaria de fazer um pedido:\n\uD83C\uDF66 Sabor: *${displayProductName}*${cremeText}\n\nVeja o produto aqui: ${siteUrl}/${currentProduct.img}\n\nMe chama pra combinarmos! \uD83D\uDE0B`;
 
-            const whatsappBaseLink = "https://api.whatsapp.com/send";
-            const finalLink = `${whatsappBaseLink}?phone=5598984003530&text=${encodeURIComponent(text)}`;
-
-            // Usar location.href é mais seguro contra bloqueadores de pop-up no mobile
-            window.location.href = finalLink;
+            // Link otimizado para abrir o app diretamente no mobile
+            const finalLink = `https://wa.me/5598984003530?text=${encodeURIComponent(text)}`;
+            window.location.assign(finalLink);
         }
 
         function handleInstagram() {
@@ -568,8 +566,8 @@
                 errorMsg.classList.add('hidden');
             }
 
-            // Link direto para o perfil é mais garantido de abrir o app
-            window.location.href = "https://www.instagram.com/gelados_do_arthur_00/";
+            // Link direto para o Direct no mobile
+            window.location.assign("https://ig.me/m/gelados_do_arthur_00");
         }
 
         function closeModal() {
