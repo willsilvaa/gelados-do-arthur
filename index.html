@@ -283,8 +283,8 @@
 
             <!-- Social Action Buttons -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-16">
-                <!-- Estes botões podem abrir o modal geral ou serem links diretos -->
-                <button onclick="handleWhatsApp()"
+                <!-- Redireciona para o cardápio para garantir o fluxo obrigatório -->
+                <button onclick="openMenuModal()"
                     class="group relative bg-[#25D366] text-white font-display text-xl font-black uppercase tracking-wide px-10 py-4 rounded-xl border-2 border-text-main shadow-pop hover:shadow-pop-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-200 w-full sm:w-auto text-center">
                     <span class="relative z-10 flex items-center justify-center gap-3">
                         <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
@@ -295,7 +295,7 @@
                     </span>
                 </button>
 
-                <button onclick="handleInstagram()"
+                <button onclick="openMenuModal()"
                     class="group relative bg-[#E1306C] text-white font-display text-xl font-black uppercase tracking-wide px-10 py-4 rounded-xl border-2 border-text-main shadow-pop hover:shadow-pop-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-200 w-full sm:w-auto text-center">
                     <span class="relative z-10 flex items-center justify-center gap-3">
                         <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
@@ -500,6 +500,10 @@
             menuModal.classList.remove('flex');
             menuModal.classList.add('hidden');
 
+            // Limpar estado para impedir pedidos fora do fluxo ou com memória antiga
+            currentProduct = { name: '', img: '' };
+            document.querySelectorAll('input[name="creme-option"]').forEach(input => input.checked = false);
+
             // Só libera o scroll se o modal de redes sociais também estiver fechado
             const socialModal = document.getElementById('social-modal');
             if (socialModal.classList.contains('hidden')) {
@@ -572,6 +576,10 @@
             const modal = document.getElementById('social-modal');
             modal.classList.remove('flex');
             modal.classList.add('hidden');
+
+            // Limpar estado para impedir pedidos fora do fluxo ou com memória antiga
+            currentProduct = { name: '', img: '' };
+            document.querySelectorAll('input[name="creme-option"]').forEach(input => input.checked = false);
 
             // Só libera o scroll se o modal do cardápio também estiver fechado
             const menuModal = document.getElementById('menu-modal');
