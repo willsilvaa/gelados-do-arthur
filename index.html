@@ -404,10 +404,10 @@
                     <h3 id="modal-product-name" class="font-display font-black text-2xl text-primary"></h3>
                 </div>
 
-                <!-- Açaí Options (Hidden by default) -->
-                <div id="acai-options"
-                    class="hidden flex-col gap-4 bg-white/50 p-4 rounded-2xl border-2 border-dashed border-text-main/30">
-                    <p class="font-display font-black text-text-main text-lg">ESCOLHA SEU CREME:</p>
+                <!-- Universal Complement Options -->
+                <div id="creme-options"
+                    class="flex flex-col gap-4 bg-white/50 p-4 rounded-2xl border-2 border-dashed border-text-main/30">
+                    <p class="font-display font-black text-text-main text-lg uppercase">Escolha seu creme:</p>
                     <div class="grid grid-cols-1 gap-3">
                         <label
                             class="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-text-main cursor-pointer hover:bg-accent/10 transition-colors">
@@ -471,17 +471,8 @@
             document.getElementById('modal-product-name').innerText = productName;
             document.getElementById('modal-product-img').src = productImg;
 
-            // Mostrar/Ocultar opções de Açaí
-            const acaiOptions = document.getElementById('acai-options');
-            if (productName.includes('Açai')) {
-                acaiOptions.classList.remove('hidden');
-                acaiOptions.classList.add('flex');
-                // Limpa seleção anterior
-                document.querySelectorAll('input[name="creme-option"]').forEach(input => input.checked = false);
-            } else {
-                acaiOptions.classList.remove('flex');
-                acaiOptions.classList.add('hidden');
-            }
+            // Limpar seleção anterior sempre que abrir o modal
+            document.querySelectorAll('input[name="creme-option"]').forEach(input => input.checked = false);
 
             // Abrir Modal
             const modal = document.getElementById('social-modal');
@@ -505,14 +496,13 @@
         }
 
         function getSelectedCreme() {
-            if (!currentProduct.name.includes('Açai')) return '';
             const selected = document.querySelector('input[name="creme-option"]:checked');
             return selected ? selected.value : null;
         }
 
         function handleWhatsApp() {
             const selectedCreme = getSelectedCreme();
-            if (currentProduct.name.includes('Açai') && !selectedCreme) {
+            if (!selectedCreme) {
                 alert('Por favor, selecione um creme para continuar! 😊');
                 return;
             }
@@ -528,7 +518,7 @@
 
         function handleInstagram() {
             const selectedCreme = getSelectedCreme();
-            if (currentProduct.name.includes('Açai') && !selectedCreme) {
+            if (!selectedCreme) {
                 alert('Por favor, selecione um creme para continuar! 😊');
                 return;
             }
