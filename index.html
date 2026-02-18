@@ -424,6 +424,11 @@
                     </div>
                 </div>
 
+                <!-- Error Message (Hidden by default) -->
+                <div id="creme-error" class="hidden text-red-600 font-black text-center text-sm">
+                    ⚠️ Por favor, escolha um creme acima!
+                </div>
+
                 <div class="flex flex-col gap-2">
                     <span
                         class="font-display text-primary font-bold text-lg uppercase tracking-widest leading-none">Escolha
@@ -471,8 +476,10 @@
             document.getElementById('modal-product-name').innerText = productName;
             document.getElementById('modal-product-img').src = productImg;
 
-            // Limpar seleção anterior sempre que abrir o modal
+            // Limpar seleções e erros anteriores sempre que abrir o modal
             document.querySelectorAll('input[name="creme-option"]').forEach(input => input.checked = false);
+            const errorMsg = document.getElementById('creme-error');
+            if (errorMsg) errorMsg.classList.add('hidden');
 
             // Abrir Modal
             const modal = document.getElementById('social-modal');
@@ -507,9 +514,18 @@
 
         function handleWhatsApp() {
             const selectedCreme = getSelectedCreme();
+            const errorMsg = document.getElementById('creme-error');
+
             if (!selectedCreme) {
-                alert('Por favor, selecione um creme para continuar! 😊');
+                if (errorMsg) {
+                    errorMsg.classList.remove('hidden');
+                    errorMsg.classList.add('animate-bounce');
+                } else {
+                    alert('Por favor, selecione um creme para continuar! 😊');
+                }
                 return;
+            } else if (errorMsg) {
+                errorMsg.classList.add('hidden');
             }
 
             const siteUrl = window.location.origin;
@@ -525,18 +541,31 @@
 
             const text = `*NOVO PEDIDO - Gelados do Arthur* \uD83C\uDF66\n\nOlá Arthur! Gostaria de fazer um pedido:\n\uD83C\uDF66 Sabor: *${displayProductName}*${cremeText}\n\nVeja o produto aqui: ${siteUrl}/${currentProduct.img}\n\nMe chama pra combinarmos! \uD83D\uDE0B`;
 
-            const whatsappBaseLink = "https://wa.me/5598984003530";
-            const finalLink = `${whatsappBaseLink}?text=${encodeURIComponent(text)}`;
-            window.open(finalLink, '_blank');
+            const whatsappBaseLink = "https://api.whatsapp.com/send";
+            const finalLink = `${whatsappBaseLink}?phone=5598984003530&text=${encodeURIComponent(text)}`;
+
+            // Usar location.href é mais seguro contra bloqueadores de pop-up no mobile
+            window.location.href = finalLink;
         }
 
         function handleInstagram() {
             const selectedCreme = getSelectedCreme();
+            const errorMsg = document.getElementById('creme-error');
+
             if (!selectedCreme) {
-                alert('Por favor, selecione um creme para continuar! 😊');
+                if (errorMsg) {
+                    errorMsg.classList.remove('hidden');
+                    errorMsg.classList.add('animate-bounce');
+                } else {
+                    alert('Por favor, selecione um creme para continuar! 😊');
+                }
                 return;
+            } else if (errorMsg) {
+                errorMsg.classList.add('hidden');
             }
-            window.open("https://ig.me/m/gelados_do_arthur_00", '_blank');
+
+            // Link direto para o perfil é mais garantido de abrir o app
+            window.location.href = "https://www.instagram.com/gelados_do_arthur_00/";
         }
 
         function closeModal() {
