@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Spline+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #FF2E00;
+    --primary-dark: #cc2500;
+    --secondary: #6A0DAD;
+    --background-light: #FFECE6;
+    --background-dark: #23130f;
+    --accent: #FFD700;
+    --text-main: #420D09;
+}
+
+body {
+    background-color: var(--background-light);
+    color: var(--text-main);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+}
+
+.font-display { font-family: 'Fredoka', cursive; }
+.font-body { font-family: 'Nunito', sans-serif; }
+
+.text-stroke {
+    -webkit-text-stroke: 2px var(--text-main);
+    text-shadow: 4px 4px 0px rgba(66, 13, 9, 0.2);
+}
+
+.blob-shape {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+.bg-pattern {
+    background-image: radial-gradient(var(--primary) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--background-light);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.perspective-1000 {
+    perspective: 1000px;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-strong {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Glassmorphism utility */
+.glass {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.shadow-pop {
+    box-shadow: 6px 6px 0px var(--text-main);
+}
+.shadow-pop-sm {
+    box-shadow: 3px 3px 0px var(--text-main);
+}
+.shadow-pop:hover {
+    box-shadow: 2px 2px 0px var(--text-main);
+}

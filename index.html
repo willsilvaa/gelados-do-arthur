@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Gelados do Arthur - Explosão de Sabor</title>
+    <meta name="description"
+        content="Gelados artesanais feitos com fruta de verdade. Sem conservantes, puro frescor derretendo na boca.">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FF2E00",
+                        "primary-dark": "#cc2500",
+                        "secondary": "#6A0DAD",
+                        "background-light": "#FFECE6",
+                        "background-dark": "#23130f",
+                        "accent": "#FFD700",
+                        "text-main": "#420D09",
+                    },
+                    fontFamily: {
+                        "display": ["Fredoka", "cursive"],
+                        "body": ["Nunito", "sans-serif"],
+                    },
+                    keyframes: {
+                        floatPrice: {
+                            '0%, 100%': { transform: 'translate(-50%, -10px)' },
+                            '50%': { transform: 'translate(-50%, -20px)' },
+                        }
+                    },
+                    animation: {
+                        'float-price': 'floatPrice 3s ease-in-out infinite',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .price-badge {
+            opacity: 0;
+            transform: translate(-50%, 20px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition-delay: 2s;
+        }
+
+        .group:hover .price-badge,
+        .group.is-visible .price-badge {
+            opacity: 1;
+            transform: translate(-50%, -10px);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-body text-text-main selection:bg-accent relative">
+    <!-- Background Texture -->
+    <div class="fixed inset-0 pointer-events-none bg-pattern z-0"></div>
+
+    <!-- Floating Graphics -->
+    <div
+        class="fixed top-20 left-10 w-24 h-24 opacity-20 animate-[float_6s_ease-in-out_infinite] pointer-events-none z-0">
+        <span class="material-symbols-outlined text-8xl text-primary">nutrition</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="relative z-50 w-full px-4 py-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex items-center justify-center md:justify-between">
+            <div class="flex flex-col md:flex-row items-center gap-2 md:gap-4 group cursor-pointer text-center md:text-left"
+                onclick="window.location.reload()">
+                <div
+                    class="relative size-16 md:size-20 bg-white border-4 border-text-main rounded-full flex items-center justify-center shadow-pop group-hover:rotate-12 transition-transform">
+                    <span class="material-symbols-outlined text-primary text-4xl md:text-5xl">icecream</span>
+                </div>
+                <h2 class="font-display text-3xl md:text-5xl font-black text-text-main tracking-tight leading-[0.9]">
+                    Gelados<br /><span class="text-primary">do Arthur</span>
+                </h2>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative z-10 w-full min-h-screen flex flex-col justify-center overflow-hidden">
+        <div
+            class="max-w-7xl mx-auto w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center py-10 md:py-20">
+            <div
+                class="lg:col-span-5 flex flex-col gap-6 md:gap-8 text-center lg:text-left order-2 lg:order-1 relative">
+                <div
+                    class="absolute -top-10 -left-10 md:-top-20 md:-left-20 w-32 h-32 md:w-40 md:h-40 bg-accent rounded-full opacity-30 blur-2xl animate-[pulse-strong_3s_infinite] pointer-events-none">
+                </div>
+
+                <div class="flex flex-col gap-2 relative">
+                    <span
+                        class="font-display text-secondary font-bold text-lg md:text-xl tracking-wider uppercase rotate-[-2deg] inline-block w-fit mx-auto lg:mx-0 bg-white/50 px-3 py-1 rounded-lg border border-secondary/20 transform hover:scale-110 transition-transform cursor-default">
+                        🍦 100% Fruta Real
+                    </span>
+                    <h1
+                        class="font-display font-black text-5xl md:text-7xl xl:text-8xl leading-[0.9] text-text-main drop-shadow-sm">
+                        EXPLOSÃO<br />
+                        DE <span class="relative inline-block text-primary">
+                            SABOR
+                            <svg class="absolute -bottom-2 md:-bottom-4 left-0 w-full h-4 md:h-6 text-accent z-[-1]"
+                                preserveAspectRatio="none" viewBox="0 0 100 20">
+                                <path d="M0 10 Q 50 20 100 10" fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-width="8"></path>
+                            </svg>
+                        </span>
+                    </h1>
+                </div>
+
+                <p class="text-base md:text-xl font-bold text-text-main/80 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                    Gelados artesanais feitos com fruta de verdade. Sem conservantes, sem culpa, puro frescor derretendo
+                    na boca.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2 md:pt-4">
+                    <button onclick="openModal('Geral', 'images/3.jpg')"
+                        class="group relative bg-accent text-text-main font-display text-lg md:text-xl font-black uppercase tracking-wide px-6 md:px-8 py-3 md:py-4 rounded-xl border-2 border-text-main shadow-pop hover:shadow-pop-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-200 animate-[pulse-strong_3s_infinite] hover:animate-none overflow-hidden">
+                        <span class="relative z-10 flex items-center justify-center gap-2">
+                            Quero Provar
+                            <span
+                                class="material-symbols-outlined group-hover:rotate-45 transition-transform">arrow_forward</span>
+                        </span>
+                        <div
+                            class="absolute inset-0 bg-white/30 translate-y-full group-hover:translate-y-0 transition-transform duration-300 transform skew-y-12 origin-bottom-left">
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div
+                class="lg:col-span-7 relative h-[350px] md:h-[500px] lg:h-[700px] flex items-center justify-center order-1 lg:order-2 perspective-1000">
+                <div
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[85%] bg-primary rounded-blob rotate-12 opacity-10 animate-[spin-slow_12s_linear_infinite]">
+                </div>
+
+                <div
+                    class="relative z-30 w-full max-w-[280px] sm:max-w-md lg:max-w-lg animate-[float_6s_ease-in-out_infinite]">
+                    <img alt="Gelatos do Arthur"
+                        class="w-full h-auto drop-shadow-[0_20px_50px_rgba(255,46,0,0.4)] hover:scale-105 transition-transform duration-500 cursor-pointer rounded-2xl"
+                        src="images/3.jpg" />
+                    <div
+                        class="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-white text-text-main px-4 md:px-6 py-2 md:py-3 rounded-xl font-display font-black shadow-pop text-sm md:text-lg rotate-12 animate-[pulse-strong_3s_infinite]">
+                        <span class="text-primary">DELIVERY</span> ON! 🏍️
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="bg-secondary overflow-hidden py-3 md:py-4 border-y-4 border-text-main rotate-1 shadow-lg">
+        <div class="whitespace-nowrap flex animate-[marquee_30s_linear_infinite] w-[200%]">
+            <div
+                class="flex gap-4 md:gap-8 items-center text-white font-display font-black text-lg md:text-2xl uppercase tracking-widest px-2 md:px-4">
+                <span>⚡ Frescor Imediato</span> <span class="text-accent text-2xl md:text-3xl">•</span>
+                <span>🍓 Fruta de Verdade</span> <span class="text-accent text-2xl md:text-3xl">•</span>
+                <span>❄️ Zero Conservantes</span> <span class="text-accent text-2xl md:text-3xl">•</span>
+                <span>😋 Vício Saudável</span> <span class="text-accent text-2xl md:text-3xl">•</span>
+            </div>
+            <div
+                class="flex gap-4 md:gap-8 items-center text-white font-display font-black text-lg md:text-2xl uppercase tracking-widest px-2 md:px-4">
+                <span>⚡ Frescor Imediato</span> <span class="text-accent text-2xl md:text-3xl">•</span>
+                <span>🍓 Fruta de Verdade</span> <span class="text-accent text-2xl md:text-3xl">•</span>
+                <span>❄️ Zero Conservantes</span> <span class="text-accent text-2xl md:text-3xl">•</span>
+                <span>😋 Vício Saudável</span> <span class="text-accent text-2xl md:text-3xl">•</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Flavors -->
+    <section id="sabores" class="py-20 md:py-32 px-4 md:px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col items-center text-center gap-4 mb-12 md:mb-20">
+                <span class="font-display text-primary font-bold text-lg md:text-xl uppercase tracking-widest">Nossos
+                    Queridinhos</span>
+                <h2 class="font-display font-black text-4xl md:text-6xl text-text-main">SABORES QUE ARREPIAM</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 max-w-7xl mx-auto">
+                <div
+                    class="group relative bg-white p-6 md:p-8 rounded-3xl border-2 border-text-main shadow-pop transition-all cursor-default overflow-visible">
+                    <!-- Floating Price Tag -->
+                    <div
+                        class="price-badge absolute -top-6 left-1/2 z-50 bg-accent border-2 border-text-main px-4 py-2 rounded-xl font-display font-black text-xl shadow-pop whitespace-nowrap animate-float-price">
+                        PREÇO: R$ 15,00
+                    </div>
+                    <div
+                        class="relative overflow-hidden rounded-2xl mb-6 md:mb-8 bg-text-main/5 min-h-[300px] flex items-center justify-center">
+                        <!-- Imagem de Fundo (4.jpg) -->
+                        <div class="absolute inset-0 z-0 scale-110 blur-[2px] opacity-40 group-hover:scale-100 transition-transform duration-700"
+                            style="background-image: url('images/4.jpg'); background-size: cover; background-position: center;">
+                        </div>
+                        <!-- Overlay para contraste -->
+                        <div class="absolute inset-0 bg-white/40 z-10"></div>
+
+                        <img src="images/1.png" alt="Morango"
+                            class="relative z-20 w-full h-auto max-h-[300px] md:max-h-[500px] object-contain group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute top-2 right-2 md:top-4 md:right-4 bg-primary text-white font-display font-bold px-3 md:px-4 py-1 rounded-full shadow-sm text-sm md:text-base z-30">
+                            Popular</div>
+                    </div>
+                    <h3 class="font-display font-black text-3xl md:text-4xl mb-2 md:mb-4">Morango</h3>
+                    <p class="font-bold text-lg md:text-xl text-text-main/70 mb-6 md:mb-8">100% fruta selecionada,
+                        colhida no ponto
+                        perfeito de doçura.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="font-display font-black text-2xl md:text-3xl text-primary">R$ 15,00</span>
+                        <button onclick="openModal('Morango', 'images/1.png')"
+                            class="bg-text-main text-white px-6 py-2 md:px-8 md:py-3 rounded-xl font-display font-black text-lg md:text-xl hover:bg-primary transition-all shadow-pop-sm hover:translate-y-[-2px]">
+                            PROVAR
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Flavor 2 -->
+                <div
+                    class="group relative bg-white p-6 md:p-8 rounded-3xl border-2 border-text-main shadow-pop transition-all cursor-default overflow-visible">
+                    <!-- Floating Price Tag -->
+                    <div
+                        class="price-badge absolute -top-6 left-1/2 z-50 bg-accent border-2 border-text-main px-4 py-2 rounded-xl font-display font-black text-xl shadow-pop whitespace-nowrap animate-float-price">
+                        PREÇO: R$ 12,00
+                    </div>
+                    <div
+                        class="relative overflow-hidden rounded-2xl mb-6 md:mb-8 bg-text-main/5 min-h-[300px] flex items-center justify-center">
+                        <!-- Imagem de Fundo (4.jpg) -->
+                        <div class="absolute inset-0 z-0 scale-110 blur-[2px] opacity-40 group-hover:scale-100 transition-transform duration-700"
+                            style="background-image: url('images/4.jpg'); background-size: cover; background-position: center;">
+                        </div>
+                        <!-- Overlay para contraste -->
+                        <div class="absolute inset-0 bg-white/40 z-10"></div>
+
+                        <img src="images/2.png" alt="Manga"
+                            class="relative z-20 w-full h-auto max-h-[300px] md:max-h-[500px] object-contain group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute top-2 right-2 md:top-4 md:right-4 bg-accent text-text-main font-display font-bold px-3 md:px-4 py-1 rounded-full shadow-sm text-sm md:text-base z-30">
+                            Novo</div>
+                    </div>
+                    <h3 class="font-display font-black text-3xl md:text-4xl mb-2 md:mb-4">Maracuja</h3>
+                    <p class="font-bold text-lg md:text-xl text-text-main/70 mb-6 md:mb-8">O sabor intenso do maracuja
+                        e uma textura
+                        cremosa única.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="font-display font-black text-2xl md:text-3xl text-primary">R$ 12,00</span>
+                        <button onclick="openModal('Maracuja e creme', 'images/2.png')"
+                            class="bg-text-main text-white px-6 py-2 md:px-8 md:py-3 rounded-xl font-display font-black text-lg md:text-xl hover:bg-primary transition-all shadow-pop-sm hover:translate-y-[-2px]">
+                            PROVAR
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Flavor 3 -->
+                <div
+                    class="group relative bg-white p-6 md:p-8 rounded-3xl border-2 border-text-main shadow-pop transition-all cursor-default overflow-visible">
+                    <div
+                        class="price-badge absolute -top-6 left-1/2 z-50 bg-accent border-2 border-text-main px-4 py-2 rounded-xl font-display font-black text-xl shadow-pop whitespace-nowrap animate-float-price">
+                        PREÇO: R$ 10,00
+                    </div>
+                    <div
+                        class="relative overflow-hidden rounded-2xl mb-6 md:mb-8 bg-text-main/5 min-h-[300px] flex items-center justify-center">
+                        <div class="absolute inset-0 z-0 scale-110 blur-[2px] opacity-40 group-hover:scale-100 transition-transform duration-700"
+                            style="background-image: url('images/4.jpg'); background-size: cover; background-position: center;">
+                        </div>
+                        <div class="absolute inset-0 bg-white/40 z-10"></div>
+                        <img src="images/5.png" alt="Chocolate Belga"
+                            class="relative z-20 w-full h-auto max-h-[300px] md:max-h-[500px] object-contain group-hover:scale-110 transition-transform duration-500 rounded-xl">
+                    </div>
+                    <h3 class="font-display font-black text-3xl md:text-4xl mb-2 md:mb-4">Creme</h3>
+                    <p class="font-bold text-lg md:text-xl text-text-main/70 mb-6 md:mb-8">O clássico que nunca erra.
+                        Rico e feito com
+                        amor.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="font-display font-black text-2xl md:text-3xl text-primary">R$ 10,00</span>
+                        <button onclick="openModal('Creme', 'images/5.png')"
+                            class="bg-text-main text-white px-6 py-2 md:px-8 md:py-3 rounded-xl font-display font-black text-lg md:text-xl hover:bg-primary transition-all shadow-pop-sm hover:translate-y-[-2px]">
+                            PROVAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-16">
+                <!-- Estes botões podem abrir o modal geral ou serem links diretos -->
+                <a href="https://wa.me/5598984003530" target="_blank"
+                    class="group relative bg-[#25D366] text-white font-display text-xl font-black uppercase tracking-wide px-10 py-4 rounded-xl border-2 border-text-main shadow-pop hover:shadow-pop-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-200 w-full sm:w-auto text-center">
+                    <span class="relative z-10 flex items-center justify-center gap-3">
+                        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                        </svg>
+                        WhatsApp
+                    </span>
+                </a>
+
+                <a href="https://www.instagram.com/gelados_do_arthur_00/" target="_blank"
+                    class="group relative bg-[#E1306C] text-white font-display text-xl font-black uppercase tracking-wide px-10 py-4 rounded-xl border-2 border-text-main shadow-pop hover:shadow-pop-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-200 w-full sm:w-auto text-center">
+                    <span class="relative z-10 flex items-center justify-center gap-3">
+                        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                            <path
+                                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2zm-.2 2A5.8 5.8 0 0 0 4 7.8v8.4c0 2.2 1.8 4 4 4h8.4c2.2 0 4-1.8 4-4V7.8c0-2.2-1.8-4-4-4H7.6zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm6.5-3a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z" />
+                        </svg>
+                        Instagram
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato" class="bg-text-main text-white py-12 md:py-20 px-6 relative overflow-hidden">
+        <div
+            class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10 md:gap-12 relative z-10 text-center md:text-left">
+            <div class="flex flex-col gap-4">
+                <div class="flex items-center justify-center md:justify-start gap-2">
+                    <div class="size-10 bg-white rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">icecream</span>
+                    </div>
+                    <h2 class="font-display text-xl md:text-2xl font-bold">Gelados do Arthur</h2>
+                </div>
+                <p class="opacity-70 max-w-xs mx-auto md:mx-0">Levando o melhor sabor da fruta direto para a sua casa.
+                </p>
+            </div>
+
+            <p class="opacity-50 text-xs md:text-sm">© 2026 Gelados do Arthur. Todos os direitos reservados.</p>
+        </div>
+        <!-- Decorative blob -->
+        <div class="absolute -bottom-20 -right-20 w-80 h-80 bg-primary opacity-20 blur-3xl blob-shape"></div>
+    </footer>
+
+    <!-- Social Media Modal -->
+    <div id="social-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-text-main/60 backdrop-blur-sm" onclick="closeModal()"></div>
+
+        <!-- Modal Content -->
+        <div
+            class="relative bg-background-light border-4 border-text-main p-8 md:p-12 rounded-[40px] shadow-pop max-w-lg w-full transform transition-all overflow-hidden">
+            <button onclick="closeModal()"
+                class="absolute top-4 right-4 text-text-main hover:text-primary transition-colors z-20">
+                <span class="material-symbols-outlined text-4xl font-bold">close</span>
+            </button>
+
+            <div class="text-center flex flex-col gap-6 relative z-10">
+                <!-- Product Preview in Modal -->
+                <div class="flex flex-col items-center gap-4">
+                    <img id="modal-product-img" src="" alt="Produto"
+                        class="w-32 h-32 object-contain rounded-2xl bg-white border-2 border-text-main shadow-pop-sm">
+                    <h3 id="modal-product-name" class="font-display font-black text-2xl text-primary"></h3>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <span
+                        class="font-display text-primary font-bold text-lg uppercase tracking-widest leading-none">Escolha
+                        por onde</span>
+                    <h2 class="font-display font-black text-4xl md:text-5xl text-text-main leading-none">QUER PEDIR?
+                    </h2>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <!-- WhatsApp Button -->
+                    <button onclick="handleWhatsApp()"
+                        class="group relative bg-[#25D366] text-white font-display text-xl font-black uppercase tracking-wide px-8 py-4 rounded-xl border-2 border-text-main shadow-pop hover:shadow-pop-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-200 text-center">
+                        <span class="relative z-10 flex items-center justify-center gap-3">
+                            <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg>
+                            WhatsApp
+                        </span>
+                    </button>
+
+                    <!-- Instagram Button -->
+                    <button onclick="handleInstagram()"
+                        class="group relative bg-[#E1306C] text-white font-display text-xl font-black uppercase tracking-wide px-8 py-4 rounded-xl border-2 border-text-main shadow-pop hover:shadow-pop-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-200 text-center">
+                        <span class="relative z-10 flex items-center justify-center gap-3">
+                            <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2zm-.2 2A5.8 5.8 0 0 0 4 7.8v8.4c0 2.2 1.8 4 4 4h8.4c2.2 0 4-1.8 4-4V7.8c0-2.2-1.8-4-4-4H7.6zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm6.5-3a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z" />
+                            </svg>
+                            Instagram
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentProduct = { name: '', img: '' };
+
+        function openModal(productName, productImg) {
+            currentProduct = { name: productName, img: productImg };
+
+            // Atualizar Modal Visualmente
+            document.getElementById('modal-product-name').innerText = productName;
+            document.getElementById('modal-product-img').src = productImg;
+
+            // Abrir Modal
+            const modal = document.getElementById('social-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        async function handleWhatsApp() {
+            const text = `*NOVO PEDIDO - Gelados do Arthur* 🍦\n\nOlá! Gostaria de provar o sabor:\n👉 *${currentProduct.name}*\n\nMe envia os detalhes por favor! 😋`;
+
+            // Tenta compartilhar imagem + texto se for mobile e suportado
+            if (navigator.share && navigator.canShare) {
+                try {
+                    const response = await fetch(currentProduct.img);
+                    const blob = await response.blob();
+                    const file = new File([blob], 'gelado.png', { type: blob.type });
+
+                    if (navigator.canShare({ files: [file] })) {
+                        await navigator.share({
+                            files: [file],
+                            title: 'Gelados do Arthur',
+                            text: text
+                        });
+                        return;
+                    }
+                } catch (e) {
+                    console.log("Compartilhamento de arquivo não suportado, usando link...");
+                }
+            }
+
+            // Fallback: Link de texto padrão
+            const whatsappBaseLink = "https://wa.me/5598984003530";
+            window.open(`${whatsappBaseLink}?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function handleInstagram() {
+            // Instagram não permite enviar texto/imagem via link direto para DM
+            // Enviamos para o perfil oficial
+            window.open("https://www.instagram.com/gelados_do_arthur_00/", '_blank');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('social-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Intersection Observer para Mobile (aparecer quando entrar na frente)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                } else {
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, { threshold: 0.7 });
+
+        document.querySelectorAll('.group').forEach(group => {
+            observer.observe(group);
+        });
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+</body>
+
+</html>
