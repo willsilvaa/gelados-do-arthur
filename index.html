@@ -252,7 +252,7 @@
                     </div>
                 </div>
 
-                <!-- Flavor 3 -->
+                <!-- Flavor 3 (Açaí) -->
                 <div
                     class="group relative bg-white p-6 md:p-8 rounded-3xl border-2 border-text-main shadow-pop transition-all cursor-default overflow-visible flex flex-col">
                     <div
@@ -265,16 +265,15 @@
                             style="background-image: url('images/4.jpg'); background-size: cover; background-position: center;">
                         </div>
                         <div class="absolute inset-0 bg-white/40 z-10"></div>
-                        <img src="images/5.png" alt="Chocolate Belga"
+                        <img src="images/5.png" alt="Açai"
                             class="relative z-20 w-full h-auto max-h-[300px] md:max-h-[500px] object-contain group-hover:scale-110 transition-transform duration-500 rounded-xl">
                     </div>
-                    <h3 class="font-display font-black text-3xl md:text-4xl mb-2 md:mb-4">Creme</h3>
-                    <p class="font-bold text-lg md:text-xl text-text-main/70 mb-6 md:mb-8">O clássico que nunca erra.
-                        Rico e feito com
-                        amor.</p>
+                    <h3 class="font-display font-black text-3xl md:text-4xl mb-2 md:mb-4">Açai</h3>
+                    <p class="font-bold text-lg md:text-xl text-text-main/70 mb-6 md:mb-8">O verdadeiro sabor da
+                        energia. Rico, cremoso e irresistível.</p>
                     <div class="flex items-center justify-between mt-auto">
                         <span class="font-display font-black text-2xl md:text-3xl text-primary">R$ 10,00</span>
-                        <button onclick="openModal('Creme', 'images/5.png')"
+                        <button onclick="openModal('Açai', 'images/5.png')"
                             class="bg-text-main text-white px-6 py-2 md:px-8 md:py-3 rounded-xl font-display font-black text-lg md:text-xl hover:bg-primary transition-all shadow-pop-sm hover:translate-y-[-2px]">
                             PROVAR
                         </button>
@@ -370,14 +369,14 @@
                         class="bg-text-main text-white px-4 py-2 rounded-xl font-display font-black hover:bg-primary transition-all">PEDIR</button>
                 </div>
 
-                <!-- Item 3 -->
+                <!-- Item 3 (Açaí) -->
                 <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border-2 border-text-main shadow-pop-sm">
-                    <img src="images/5.png" class="w-20 h-20 object-contain" alt="Creme">
+                    <img src="images/5.png" class="w-20 h-20 object-contain" alt="Açai">
                     <div class="flex-1 text-left">
-                        <h4 class="font-display font-black text-xl">Creme</h4>
+                        <h4 class="font-display font-black text-xl">Açai</h4>
                         <span class="font-display font-black text-primary">R$ 10,00</span>
                     </div>
-                    <button onclick="openModal('Creme', 'images/5.png'); closeMenuModal();"
+                    <button onclick="openModal('Açai', 'images/5.png'); closeMenuModal();"
                         class="bg-text-main text-white px-4 py-2 rounded-xl font-display font-black hover:bg-primary transition-all">PEDIR</button>
                 </div>
             </div>
@@ -403,6 +402,26 @@
                     <img id="modal-product-img" src="" alt="Produto"
                         class="w-32 h-32 object-contain rounded-2xl bg-white border-2 border-text-main shadow-pop-sm">
                     <h3 id="modal-product-name" class="font-display font-black text-2xl text-primary"></h3>
+                </div>
+
+                <!-- Açaí Options (Hidden by default) -->
+                <div id="acai-options"
+                    class="hidden flex-col gap-4 bg-white/50 p-4 rounded-2xl border-2 border-dashed border-text-main/30">
+                    <p class="font-display font-black text-text-main text-lg">ESCOLHA SEU CREME:</p>
+                    <div class="grid grid-cols-1 gap-3">
+                        <label
+                            class="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-text-main cursor-pointer hover:bg-accent/10 transition-colors">
+                            <input type="radio" name="creme-option" value="Creme de Maracuja"
+                                class="size-5 accent-primary">
+                            <span class="font-bold text-text-main">Creme de Maracujá</span>
+                        </label>
+                        <label
+                            class="flex items-center gap-3 p-3 bg-white rounded-xl border-2 border-text-main cursor-pointer hover:bg-accent/10 transition-colors">
+                            <input type="radio" name="creme-option" value="Creme de Morango"
+                                class="size-5 accent-primary">
+                            <span class="font-bold text-text-main">Creme de Morango</span>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="flex flex-col gap-2">
@@ -452,6 +471,18 @@
             document.getElementById('modal-product-name').innerText = productName;
             document.getElementById('modal-product-img').src = productImg;
 
+            // Mostrar/Ocultar opções de Açaí
+            const acaiOptions = document.getElementById('acai-options');
+            if (productName === 'Açai') {
+                acaiOptions.classList.remove('hidden');
+                acaiOptions.classList.add('flex');
+                // Limpa seleção anterior
+                document.querySelectorAll('input[name="creme-option"]').forEach(input => input.checked = false);
+            } else {
+                acaiOptions.classList.remove('flex');
+                acaiOptions.classList.add('hidden');
+            }
+
             // Abrir Modal
             const modal = document.getElementById('social-modal');
             modal.classList.remove('hidden');
@@ -473,21 +504,34 @@
             document.body.style.overflow = 'auto';
         }
 
+        function getSelectedCreme() {
+            if (currentProduct.name !== 'Açai') return '';
+            const selected = document.querySelector('input[name="creme-option"]:checked');
+            return selected ? selected.value : null;
+        }
+
         function handleWhatsApp() {
-            // Pegamos a URL atual do site para enviar junto (ajuda o Arthur a ver o site) e o link da imagem
+            const selectedCreme = getSelectedCreme();
+            if (currentProduct.name === 'Açai' && !selectedCreme) {
+                alert('Por favor, selecione um creme para continuar! 😊');
+                return;
+            }
+
             const siteUrl = window.location.origin;
-            const text = `*NOVO PEDIDO - Gelados do Arthur* 🍦\n\nOlá Arthur! Gostaria de fazer um pedido:\n👉 Sabor: *${currentProduct.name}*\n\nVeja o produto aqui: ${siteUrl}/${currentProduct.img}\n\nMe chama pra combinarmos! 😋`;
+            const cremeText = selectedCreme ? `\n🍓 Com: *${selectedCreme}*` : '';
+            const text = `*NOVO PEDIDO - Gelados do Arthur* 🍦\n\nOlá Arthur! Gostaria de fazer um pedido:\n👉 Sabor: *${currentProduct.name}*${cremeText}\n\nVeja o produto aqui: ${siteUrl}/${currentProduct.img}\n\nMe chama pra combinarmos! 😋`;
 
             const whatsappBaseLink = "https://wa.me/5598984003530";
             const finalLink = `${whatsappBaseLink}?text=${encodeURIComponent(text)}`;
-
-            // Abre o WhatsApp diretamente
             window.open(finalLink, '_blank');
         }
 
         function handleInstagram() {
-            // Usamos o link direto para mensagens (Direct) do Instagram
-            // Nota: O Instagram não permite pré-preencher texto como o WhatsApp faz.
+            const selectedCreme = getSelectedCreme();
+            if (currentProduct.name === 'Açai' && !selectedCreme) {
+                alert('Por favor, selecione um creme para continuar! 😊');
+                return;
+            }
             window.open("https://ig.me/m/gelados_do_arthur_00", '_blank');
         }
 
