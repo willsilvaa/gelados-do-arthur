@@ -514,7 +514,14 @@
 
             const siteUrl = window.location.origin;
             const cremeText = selectedCreme ? `\n🍓 Com: *${selectedCreme}*` : '';
-            const text = `*NOVO PEDIDO - Gelados do Arthur* 🍦\n\nOlá Arthur! Gostaria de fazer um pedido:\n👉 Sabor: *${currentProduct.name}*${cremeText}\n\nVeja o produto aqui: ${siteUrl}/${currentProduct.img}\n\nMe chama pra combinarmos! 😋`;
+
+            // Lógica especial para Morango + Creme de Morango
+            let displayProductName = currentProduct.name;
+            if (currentProduct.name.includes('Morango') && selectedCreme === 'Creme de Morango') {
+                displayProductName = '500 ML';
+            }
+
+            const text = `*NOVO PEDIDO - Gelados do Arthur* 🍦\n\nOlá Arthur! Gostaria de fazer um pedido:\n👉 Sabor: *${displayProductName}*${cremeText}\n\nVeja o produto aqui: ${siteUrl}/${currentProduct.img}\n\nMe chama pra combinarmos! 😋`;
 
             const whatsappBaseLink = "https://wa.me/5598984003530";
             const finalLink = `${whatsappBaseLink}?text=${encodeURIComponent(text)}`;
