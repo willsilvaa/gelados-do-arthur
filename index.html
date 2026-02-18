@@ -406,32 +406,16 @@
             document.body.style.overflow = 'hidden';
         }
 
-        async function handleWhatsApp() {
-            const text = `*NOVO PEDIDO - Gelados do Arthur* 🍦\n\nOlá! Gostaria de provar o sabor:\n👉 *${currentProduct.name}*\n\nMe envia os detalhes por favor! 😋`;
+        function handleWhatsApp() {
+            // Pegamos a URL atual do site para enviar junto (ajuda o Arthur a ver o site) e o link da imagem
+            const siteUrl = window.location.origin;
+            const text = `*NOVO PEDIDO - Gelados do Arthur* 🍦\n\nOlá Arthur! Gostaria de fazer um pedido:\n👉 Sabor: *${currentProduct.name}*\n\nVeja o produto aqui: ${siteUrl}/${currentProduct.img}\n\nMe chama pra combinarmos! 😋`;
 
-            // Tenta compartilhar imagem + texto se for mobile e suportado
-            if (navigator.share && navigator.canShare) {
-                try {
-                    const response = await fetch(currentProduct.img);
-                    const blob = await response.blob();
-                    const file = new File([blob], 'gelado.png', { type: blob.type });
-
-                    if (navigator.canShare({ files: [file] })) {
-                        await navigator.share({
-                            files: [file],
-                            title: 'Gelados do Arthur',
-                            text: text
-                        });
-                        return;
-                    }
-                } catch (e) {
-                    console.log("Compartilhamento de arquivo não suportado, usando link...");
-                }
-            }
-
-            // Fallback: Link de texto padrão
             const whatsappBaseLink = "https://wa.me/5598984003530";
-            window.open(`${whatsappBaseLink}?text=${encodeURIComponent(text)}`, '_blank');
+            const finalLink = `${whatsappBaseLink}?text=${encodeURIComponent(text)}`;
+
+            // Abre o WhatsApp diretamente
+            window.open(finalLink, '_blank');
         }
 
         function handleInstagram() {
