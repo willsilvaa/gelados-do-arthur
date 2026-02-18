@@ -517,11 +517,11 @@
 
             // Lógica especial para Morango: envia apenas a capacidade
             let displayProductName = currentProduct.name;
-            if (currentProduct.name.toLowerCase().includes('morango')) {
+            if (currentProduct.name.match(/morango/i)) {
                 displayProductName = '500 ML';
             }
 
-            const text = `*NOVO PEDIDO - Gelados do Arthur* 🍦\n\nOlá Arthur! Gostaria de fazer um pedido:\n👉 Sabor: *${displayProductName}*${cremeText}\n\nVeja o produto aqui: ${siteUrl}/${currentProduct.img}\n\nMe chama pra combinarmos! 😋`;
+            const text = `*NOVO PEDIDO - Gelados do Arthur* 🍦\n\nOlá Arthur! Gostaria de fazer um pedido:\n🍦 Sabor: *${displayProductName}*${cremeText}\n\nVeja o produto aqui: ${siteUrl}/${currentProduct.img}\n\nMe chama pra combinarmos! 😋`;
 
             const whatsappBaseLink = "https://wa.me/5598984003530";
             const finalLink = `${whatsappBaseLink}?text=${encodeURIComponent(text)}`;
