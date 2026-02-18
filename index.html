@@ -513,7 +513,7 @@
             }
 
             const siteUrl = window.location.origin;
-            const cremeText = selectedCreme ? `\n🍓 Com: *${selectedCreme}*` : '';
+            const cremeText = selectedCreme ? `\n\uD83C\uDF53 Com: *${selectedCreme}*` : '';
 
             // Lógica especial para nomes simplificados: envia apenas a capacidade
             let displayProductName = currentProduct.name;
@@ -523,7 +523,7 @@
                 displayProductName = '300 ML';
             }
 
-            const text = `*NOVO PEDIDO - Gelados do Arthur* 🍦\n\nOlá Arthur! Gostaria de fazer um pedido:\n🍦 Sabor: *${displayProductName}*${cremeText}\n\nVeja o produto aqui: ${siteUrl}/${currentProduct.img}\n\nMe chama pra combinarmos! 😋`;
+            const text = `*NOVO PEDIDO - Gelados do Arthur* \uD83C\uDF66\n\nOlá Arthur! Gostaria de fazer um pedido:\n\uD83C\uDF66 Sabor: *${displayProductName}*${cremeText}\n\nVeja o produto aqui: ${siteUrl}/${currentProduct.img}\n\nMe chama pra combinarmos! \uD83D\uDE0B`;
 
             const whatsappBaseLink = "https://wa.me/5598984003530";
             const finalLink = `${whatsappBaseLink}?text=${encodeURIComponent(text)}`;
