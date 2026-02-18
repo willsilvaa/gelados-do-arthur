@@ -473,7 +473,7 @@
 
             // Mostrar/Ocultar opções de Açaí
             const acaiOptions = document.getElementById('acai-options');
-            if (productName === 'Açai') {
+            if (productName.includes('Açai')) {
                 acaiOptions.classList.remove('hidden');
                 acaiOptions.classList.add('flex');
                 // Limpa seleção anterior
@@ -505,14 +505,14 @@
         }
 
         function getSelectedCreme() {
-            if (currentProduct.name !== 'Açai') return '';
+            if (!currentProduct.name.includes('Açai')) return '';
             const selected = document.querySelector('input[name="creme-option"]:checked');
             return selected ? selected.value : null;
         }
 
         function handleWhatsApp() {
             const selectedCreme = getSelectedCreme();
-            if (currentProduct.name === 'Açai' && !selectedCreme) {
+            if (currentProduct.name.includes('Açai') && !selectedCreme) {
                 alert('Por favor, selecione um creme para continuar! 😊');
                 return;
             }
@@ -528,7 +528,7 @@
 
         function handleInstagram() {
             const selectedCreme = getSelectedCreme();
-            if (currentProduct.name === 'Açai' && !selectedCreme) {
+            if (currentProduct.name.includes('Açai') && !selectedCreme) {
                 alert('Por favor, selecione um creme para continuar! 😊');
                 return;
             }
