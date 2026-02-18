@@ -515,9 +515,10 @@
             const siteUrl = window.location.origin;
             const cremeText = selectedCreme ? `\n🍓 Com: *${selectedCreme}*` : '';
 
-            // Lógica especial para Morango + Creme de Morango
+            // Lógica especial para Morango + Cremes
             let displayProductName = currentProduct.name;
-            if (currentProduct.name.includes('Morango') && selectedCreme === 'Creme de Morango') {
+            if (currentProduct.name.includes('Morango') &&
+                (selectedCreme === 'Creme de Morango' || selectedCreme === 'Creme de Maracuja')) {
                 displayProductName = '500 ML';
             }
 
